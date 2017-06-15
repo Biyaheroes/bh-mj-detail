@@ -1,2 +1,2 @@
 # bh-mj-detail
-Biyaheroes MJML Detail component.
+Biyaheroes MJML Detail Component.
