@@ -87,39 +87,39 @@ class Detail extends Component {
 		const { mjAttribute } = this.props;
 
 		return ( <Column { ...this.props }>
-				<Table
-					table-layout="auto"
-					width="auto">
-					<tr>
-						<th
-							align="left"
-							style={{
-								"padding": "0px 0px 0px 0px",
-								"fontSize": "11px",
-								"fontWeight": "500",
-								"letterSpacing": "0.3px",
-								"textTransform": "uppercase",
-								"textAlign": "left"
-							}}
-						>
-							{ wichevr( mjAttribute( "title" ), mjAttribute( "label" ) ) }
-						</th>
-					</tr>
-					<tr>
-						<td
-							align="left"
-							style={{
-								"padding": "0px 0px 0px 0px",
-								"fontSize": "15px",
-								"letterSpacing": "0.3px",
-								"textAlign": "left"
-							}}
-						>
-							{ mjAttribute( "value" ) }
-						</td>
-					</tr>
-				</Table>
-			</Column> );
+					<Table
+						table-layout="auto"
+						width="auto">
+						<tr>
+							<th
+								align="left"
+								style={{
+									"padding": "0px 0px 0px 0px",
+									"fontSize": "11px",
+									"fontWeight": "500",
+									"letterSpacing": "0.3px",
+									"textTransform": "uppercase",
+									"textAlign": "left"
+								}}
+							>
+								{ wichevr( mjAttribute( "title" ), mjAttribute( "label" ) ) }
+							</th>
+						</tr>
+						<tr>
+							<td
+								align="left"
+								style={{
+									"padding": "0px 0px 0px 0px",
+									"fontSize": "15px",
+									"letterSpacing": "0.3px",
+									"textAlign": "left"
+								}}
+							>
+								{ mjAttribute( "value" ) }
+							</td>
+						</tr>
+					</Table>
+				</Column> );
 	}
 }
 
