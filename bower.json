@@ -1,6 +1,6 @@
 {
   "name": "bh-mj-detail",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Biyaheroes MJML Detail Component.",
   "main": "detail.deploy.js",
   "support": "detail.support.js",

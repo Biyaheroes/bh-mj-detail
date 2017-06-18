@@ -84,9 +84,12 @@ const defaultMJMLDefinition = {
 @MJMLElement
 class Detail extends Component {
 	render( ){
-		const { mjAttribute } = this.props;
+		const { mjAttribute, count = 3 } = this.props;
 
-		return ( <Column { ...this.props }>
+		return ( <Column
+					{ ...this.props }
+					width={ `${ Math.round( ( 100 / count ) / 10 ) * 10 }%` }
+				>
 					<Table
 						table-layout="auto"
 						width="auto">
