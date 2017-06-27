@@ -50,6 +50,7 @@
 
 	@include:
 		{
+			"falzy": "falzy",
 			"MJMLElement": "mjml-core",
 			"React": "react",
 			"Component": "react.Component",
@@ -64,6 +65,8 @@ import { MJMLElement } from "mjml-core";
 import React, { Component } from "react";
 import Column from "mjml-column";
 import Table from "mjml-table";
+
+import falzy from "falzy";
 import wichevr from "wichevr";
 
 const tagName = "mj-detail";
@@ -84,7 +87,13 @@ const defaultMJMLDefinition = {
 @MJMLElement
 class Detail extends Component {
 	render( ){
-		const { mjAttribute, count = 3 } = this.props;
+		const { mjAttribute } = this.props;
+
+		let { count } = this.props;
+
+		if( falzy( count ) ){
+			count = 3;
+		}
 
 		return ( <Column
 					{ ...this.props }

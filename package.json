@@ -1,14 +1,12 @@
 {
   "name": "bh-mj-detail",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Biyaheroes MJML Detail Component.",
   "main": "detail.js",
   "support": "detail.support.js",
   "deploy": "detail.deploy.js",
   "browser": "detail.deploy.js",
   "scripts": {
-    "preinstall": "npm install babel-cli@latest gulp-cli@latest webpack@latest webpack-dev-server@latest watch@latest mjml@latest veon@latest browser-sync@latest --global",
-    "postinstall": "npm rebuild node-sass",
     "deploy": "veon set production \"gulp clean && gulp && babel detail.js --out-file detail.support.js --source-maps && webpack --progress\"",
     "build": "veon set development \"gulp clean && gulp && babel detail.js --out-file detail.support.js --source-maps && webpack --progress\"",
     "test": "veon set test \"gulp && webpack --progress --env.test && mjml test-index.mjml --output test-index.html\"",
@@ -41,6 +39,7 @@
   "homepage": "https://github.com/Biyaheroes/bh-mj-detail#readme",
   "dependencies": {
     "babel-runtime": "^6.23.0",
+    "falzy": "^0.20.0",
     "jquery": "^3.2.1",
     "mjml": "^3.3.3",
     "mjml-column": "^3.3.3",
@@ -71,14 +70,14 @@
     "gulp-uglify": "^3.0.0",
     "gulp-watch": "^4.3.11",
     "llamalize": "^0.15.0",
-    "resolve-url-loader": "^2.0.3",
+    "resolve-url-loader": "^2.1.0",
     "source-map-loader": "^0.2.1",
     "style-loader": "^0.18.2",
     "url-loader": "^0.5.9",
     "vinyl-paths": "^2.1.0",
     "watch": "^1.0.2",
-    "webpack": "^2.6.1",
-    "webpack-dev-server": "^2.4.5",
+    "webpack": "^3.0.0",
+    "webpack-dev-server": "^2.5.0",
     "yargs": "^8.0.2"
   }
 }
