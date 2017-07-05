@@ -2,6 +2,7 @@
 	<mj-body>
 		<mj-container>
 			<mj-detail title="Hello World" value="This is a normal value" />
+			<mj-detail title="Hello World" value="This is a normal value" align="center"/>
 		</mj-container>
 	</mj-body>
 </mjml>

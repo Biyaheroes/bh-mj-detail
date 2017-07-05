@@ -1,7 +1,7 @@
 yarn add \
 babel-runtime \
-falzy \
 jquery \
+karv \
 mjml \
 mjml-column \
 mjml-core \
@@ -43,8 +43,8 @@ webpack-dev-server \
 yargs \
 --dev && \
 bower install \
-falzy \
 jquery \
+karv \
 react \
 wichevr \
 --force-latest \

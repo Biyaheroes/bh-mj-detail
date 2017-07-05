@@ -50,7 +50,7 @@
 
 	@include:
 		{
-			"falzy": "falzy",
+			"karv": "karv",
 			"MJMLElement": "mjml-core",
 			"React": "react",
 			"Component": "react.Component",
@@ -66,7 +66,7 @@ import React, { Component } from "react";
 import Column from "mjml-column";
 import Table from "mjml-table";
 
-import falzy from "falzy";
+import karv from "karv";
 import wichevr from "wichevr";
 
 const tagName = "mj-detail";
@@ -78,56 +78,66 @@ const endingTag = false;
 const defaultMJMLDefinition = {
 	"content": "",
 	"attributes": {
-		"title": "Title",
-		"label": "Label",
-		"value": "Value"
+		"align": "left",
+		"count": 3,
+		"title": "",
+		"label": "",
+		"value": ""
 	},
 };
+
+const DEFAULT_DETAIL_MAXIMUM_COUNT = 3;
 
 @MJMLElement
 class Detail extends Component {
 	render( ){
 		const { mjAttribute } = this.props;
 
-		let { count } = this.props;
+		let { count, align, title, label, value } = this.props;
 
-		if( falzy( count ) ){
-			count = 3;
+		try{
+			count = parseInt( wichevr( count, mjAttribute( "count" ), DEFAULT_DETAIL_MAXIMUM_COUNT ) );
+
+		}catch( error ){
+			count = DEFAULT_DETAIL_MAXIMUM_COUNT;
 		}
 
+		align = wichevr( align, mjAttribute( "align" ) );
+
+		let property = karv( this.props );
+		property.width = `${ Math.round( ( 100 / count ) / 10 ) * 10 }%`;
+
 		return ( <Column
-					{ ...this.props }
-					width={ `${ Math.round( ( 100 / count ) / 10 ) * 10 }%` }
+					{ ...property }
 				>
 					<Table
+						align={ align }
 						table-layout="auto"
 						width="auto">
 						<tr>
 							<th
-								align="left"
-								style={{
+								style={ {
 									"padding": "0px 0px 0px 0px",
 									"fontSize": "11px",
 									"fontWeight": "500",
 									"letterSpacing": "0.3px",
 									"textTransform": "uppercase",
-									"textAlign": "left"
-								}}
+									"textAlign": align
+								} }
 							>
-								{ wichevr( mjAttribute( "title" ), mjAttribute( "label" ) ) }
+								{ wichevr( title, label, mjAttribute( "title" ), mjAttribute( "label" ) ) }
 							</th>
 						</tr>
 						<tr>
 							<td
-								align="left"
-								style={{
+								style={ {
 									"padding": "0px 0px 0px 0px",
 									"fontSize": "15px",
 									"letterSpacing": "0.3px",
-									"textAlign": "left"
-								}}
+									"textAlign": align
+								} }
 							>
-								{ mjAttribute( "value" ) }
+								{ wichevr( value, mjAttribute( "value" ) ) }
 							</td>
 						</tr>
 					</Table>
