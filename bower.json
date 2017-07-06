@@ -1,6 +1,6 @@
 {
   "name": "bh-mj-detail",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Biyaheroes MJML Detail Component.",
   "main": "detail.deploy.js",
   "support": "detail.support.js",
@@ -27,8 +27,7 @@
   ],
   "dependencies": {
     "jquery": "^3.2.1",
-    "karv": "^0.16.0",
     "react": "^15.6.1",
-    "wichevr": "^0.10.0"
+    "wichevr": "^0.12.0"
   }
 }

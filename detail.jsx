@@ -50,23 +50,23 @@
 
 	@include:
 		{
-			"karv": "karv",
-			"MJMLElement": "mjml-core",
-			"React": "react",
 			"Component": "react.Component",
 			"Column": "mjml-column",
+			"MJMLElement": "mjml-core",
+			"React": "react",
 			"Table": "mjml-table",
 			"wichevr": "wichevr"
 		}
 	@end-include
 */
 
-import { MJMLElement } from "mjml-core";
 import React, { Component } from "react";
+
+import { MJMLElement } from "mjml-core";
+
 import Column from "mjml-column";
 import Table from "mjml-table";
 
-import karv from "karv";
 import wichevr from "wichevr";
 
 const tagName = "mj-detail";
@@ -104,16 +104,14 @@ class Detail extends Component {
 
 		align = wichevr( align, mjAttribute( "align" ) );
 
-		let property = karv( this.props );
-		property.width = `${ Math.round( ( 100 / count ) / 10 ) * 10 }%`;
-
 		return ( <Column
-					{ ...property }
+					width={ `${ Math.round( ( 100 / count ) / 10 ) * 10 }%` }
 				>
 					<Table
 						align={ align }
 						table-layout="auto"
-						width="auto">
+						width="auto"
+					>
 						<tr>
 							<th
 								style={ {
