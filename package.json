@@ -1,6 +1,6 @@
 {
   "name": "bh-mj-detail",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Biyaheroes MJML Detail Component.",
   "main": "detail.js",
   "support": "detail.support.js",
@@ -76,8 +76,8 @@
     "url-loader": "^0.5.9",
     "vinyl-paths": "^2.1.0",
     "watch": "^1.0.2",
-    "webpack": "^3.0.0",
-    "webpack-dev-server": "^2.5.0",
+    "webpack": "^3.1.0",
+    "webpack-dev-server": "^2.5.1",
     "yargs": "^8.0.2"
   }
 }

@@ -78,6 +78,8 @@ const endingTag = false;
 const defaultMJMLDefinition = {
 	"content": "",
 	"attributes": {
+		"background-color": "white",
+		"foreground-color": "black",
 		"align": "left",
 		"count": 3,
 		"title": "",
@@ -93,7 +95,19 @@ class Detail extends Component {
 	render( ){
 		const { mjAttribute } = this.props;
 
-		let { count, align, title, label, value } = this.props;
+		let {
+			title,
+			label,
+			value,
+			count,
+			align,
+			backgroundColor,
+			foregroundColor
+		} = this.props;
+
+		title = wichevr( title, label, mjAttribute( "title" ), mjAttribute( "label" ) );
+
+		value = wichevr( value, mjAttribute( "value" ) );
 
 		try{
 			count = parseInt( wichevr( count, mjAttribute( "count" ), DEFAULT_DETAIL_MAXIMUM_COUNT ) );
@@ -102,10 +116,17 @@ class Detail extends Component {
 			count = DEFAULT_DETAIL_MAXIMUM_COUNT;
 		}
 
+		let width = `${ Math.round( ( 100 / count ) / 10 ) * 10 }%`;
+
 		align = wichevr( align, mjAttribute( "align" ) );
 
+		backgroundColor = wichevr( backgroundColor, mjAttribute( "background-color" ) );
+
+		foregroundColor = wichevr( foregroundColor, mjAttribute( "foreground-color" ) );
+
 		return ( <Column
-					width={ `${ Math.round( ( 100 / count ) / 10 ) * 10 }%` }
+					width={ width }
+					background-color={ backgroundColor }
 				>
 					<Table
 						align={ align }
@@ -120,10 +141,11 @@ class Detail extends Component {
 									"fontWeight": "500",
 									"letterSpacing": "0.3px",
 									"textTransform": "uppercase",
-									"textAlign": align
+									"textAlign": align,
+									"color": foregroundColor
 								} }
 							>
-								{ wichevr( title, label, mjAttribute( "title" ), mjAttribute( "label" ) ) }
+								{ title }
 							</th>
 						</tr>
 						<tr>
@@ -132,10 +154,11 @@ class Detail extends Component {
 									"padding": "0px 0px 0px 0px",
 									"fontSize": "15px",
 									"letterSpacing": "0.3px",
-									"textAlign": align
+									"textAlign": align,
+									"color": foregroundColor
 								} }
 							>
-								{ wichevr( value, mjAttribute( "value" ) ) }
+								{ value }
 							</td>
 						</tr>
 					</Table>
