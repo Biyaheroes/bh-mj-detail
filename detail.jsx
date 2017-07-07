@@ -50,8 +50,10 @@
 
 	@include:
 		{
+			"booleanize": "booleanize",
 			"Component": "react.Component",
 			"Column": "mjml-column",
+			"falzy": "falzy",
 			"MJMLElement": "mjml-core",
 			"React": "react",
 			"Table": "mjml-table",
@@ -67,6 +69,8 @@ import { MJMLElement } from "mjml-core";
 import Column from "mjml-column";
 import Table from "mjml-table";
 
+import booleanize from "booleanize";
+import falzy from "falzy";
 import wichevr from "wichevr";
 
 const tagName = "mj-detail";
@@ -78,14 +82,15 @@ const endingTag = false;
 const defaultMJMLDefinition = {
 	"content": "",
 	"attributes": {
-		"background-color": "white",
-		"foreground-color": "black",
-		"align": "left",
-		"count": 3,
 		"title": "",
 		"label": "",
-		"value": ""
-	},
+		"value": "",
+		"count": 3,
+		"align": "left",
+		"reverse": false,
+		"background-color": "white",
+		"foreground-color": "black"
+	}
 };
 
 const DEFAULT_DETAIL_MAXIMUM_COUNT = 3;
@@ -101,6 +106,7 @@ class Detail extends Component {
 			value,
 			count,
 			align,
+			reverse,
 			backgroundColor,
 			foregroundColor
 		} = this.props;
@@ -108,6 +114,10 @@ class Detail extends Component {
 		title = wichevr( title, label, mjAttribute( "title" ), mjAttribute( "label" ) );
 
 		value = wichevr( value, mjAttribute( "value" ) );
+
+		if( falzy( value ) ){
+			title = "";
+		}
 
 		try{
 			count = parseInt( wichevr( count, mjAttribute( "count" ), DEFAULT_DETAIL_MAXIMUM_COUNT ) );
@@ -120,21 +130,13 @@ class Detail extends Component {
 
 		align = wichevr( align, mjAttribute( "align" ) );
 
+		reverse = booleanize( wichevr( reverse, mjAttribute( "reverse" ) ) );
+
 		backgroundColor = wichevr( backgroundColor, mjAttribute( "background-color" ) );
 
 		foregroundColor = wichevr( foregroundColor, mjAttribute( "foreground-color" ) );
 
-		return ( <Column
-					width={ width }
-					background-color={ backgroundColor }
-				>
-					<Table
-						align={ align }
-						table-layout="auto"
-						width="auto"
-					>
-						<tr>
-							<th
+		let titleComponent = ( <td
 								style={ {
 									"padding": "0px 0px 0px 0px",
 									"fontSize": "11px",
@@ -146,10 +148,9 @@ class Detail extends Component {
 								} }
 							>
 								{ title }
-							</th>
-						</tr>
-						<tr>
-							<td
+							</td> );
+
+		let valueComponent = ( <td
 								style={ {
 									"padding": "0px 0px 0px 0px",
 									"fontSize": "15px",
@@ -159,7 +160,22 @@ class Detail extends Component {
 								} }
 							>
 								{ value }
-							</td>
+							</td> );
+
+		return ( <Column
+					width={ width }
+					background-color={ backgroundColor }
+				>
+					<Table
+						align={ align }
+						table-layout="auto"
+						width="auto"
+					>
+						<tr>
+							{ reverse? valueComponent : titleComponent }
+						</tr>
+						<tr>
+							{ reverse? titleComponent : valueComponent }
 						</tr>
 					</Table>
 				</Column> );
