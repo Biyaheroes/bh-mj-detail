@@ -62,7 +62,11 @@
 	@end-include
 */
 
-import React, { Component } from "react";
+
+
+import $ from "jquery";
+import React, { PureComponent } from "react";
+import ReactDOM from "react-dom";
 
 import { MJMLElement } from "mjml-core";
 
@@ -82,6 +86,7 @@ const endingTag = false;
 const defaultMJMLDefinition = {
 	"content": "",
 	"attributes": {
+		"name": "",
 		"title": "",
 		"label": "",
 		"value": "",
@@ -96,20 +101,18 @@ const defaultMJMLDefinition = {
 const DEFAULT_DETAIL_MAXIMUM_COUNT = 3;
 
 @MJMLElement
-class Detail extends Component {
-	render( ){
+class Detail extends PureComponent {
+	resolve( property ){
 		const { mjAttribute } = this.props;
 
 		let {
-			title,
-			label,
-			value,
-			count,
-			align,
-			reverse,
-			backgroundColor,
-			foregroundColor
+			name,
+			title, label, value,
+			count, align, reverse,
+			backgroundColor, foregroundColor
 		} = this.props;
+
+		name = wichevr( name, mjAttribute( "name" ) );
 
 		title = wichevr( title, label, mjAttribute( "title" ), mjAttribute( "label" ) );
 
@@ -136,49 +139,110 @@ class Detail extends Component {
 
 		foregroundColor = wichevr( foregroundColor, mjAttribute( "foreground-color" ) );
 
-		let titleComponent = ( <td
-								style={ {
-									"padding": "0px 0px 0px 0px",
-									"fontSize": "11px",
-									"fontWeight": "500",
-									"letterSpacing": "0.3px",
-									"textTransform": "uppercase",
-									"textAlign": align,
-									"color": foregroundColor
-								} }
-							>
-								{ title }
-							</td> );
+		return {
+			"name": name,
+			"title": title,
+			"value": value,
+			"align": align,
+			"width": width,
+			"reverse": reverse,
+			"backgroundColor": backgroundColor,
+			"foregroundColor": foregroundColor
+		};
+	}
 
-		let valueComponent = ( <td
-								style={ {
-									"padding": "0px 0px 0px 0px",
-									"fontSize": "15px",
-									"letterSpacing": "0.3px",
-									"textAlign": align,
-									"color": foregroundColor
-								} }
-							>
-								{ value }
-							</td> );
+	componentWillMount( ){
+		this.setState( { "data": this.resolve( this.props ) } );
+	}
 
-		return ( <Column
-					width={ width }
-					background-color={ backgroundColor }
+	componentWillReceiveProps( property ){
+		this.setState( { "data": this.resolve( property ) } );
+	}
+
+	render( ){
+		let {
+			title, value,
+			align, width, reverse,
+			backgroundColor, foregroundColor
+		} = this.state.data;
+
+		let titleComponent = (
+			<td
+				style={ {
+					"padding": "0px 0px 0px 0px",
+					"fontSize": "11px",
+					"fontWeight": "500",
+					"letterSpacing": "0.3px",
+					"textTransform": "uppercase",
+					"textAlign": align,
+					"color": foregroundColor
+				} }
+			>
+				{ title }
+			</td>
+		);
+
+		let valueComponent = (
+			<td
+				style={ {
+					"padding": "0px 0px 0px 0px",
+					"fontSize": "15px",
+					"letterSpacing": "0.3px",
+					"textAlign": align,
+					"color": foregroundColor
+				} }
+			>
+				{ value }
+			</td>
+		);
+
+		return (
+			<Column
+				width={ width }
+				background-color={ backgroundColor }
+			>
+				<Table
+					css-class="detail"
+					align={ align }
+					table-layout="auto"
+					width="auto"
 				>
-					<Table
-						align={ align }
-						table-layout="auto"
-						width="auto"
-					>
-						<tr>
-							{ reverse? valueComponent : titleComponent }
-						</tr>
-						<tr>
-							{ reverse? titleComponent : valueComponent }
-						</tr>
-					</Table>
-				</Column> );
+					<tr>
+						{ reverse? valueComponent : titleComponent }
+					</tr>
+					<tr>
+						{ reverse? titleComponent : valueComponent }
+					</tr>
+				</Table>
+			</Column>
+		);
+	}
+
+	componentDidMount( ){
+		let component = $( ReactDOM.findDOMNode( this ) )
+			.addClass( "bh-mj-detail" )
+			.addClass( this.state.data.name )
+			.append( `
+				<link
+					class="bh-mj-detail style"
+					rel="stylesheet"
+					type="text/css"
+					href="https://unpkg.com/bh-mj-detail/detail.css"
+				/>
+			` )
+			.css( "width", this.state.data.width );
+
+		/*;
+			@note:
+				This is a fix for excess comma during component rendering.
+			@end-note
+		*/
+		let tableBody = $( ".detail table > tbody", component ).detach( );
+		$( ".detail table", component ).empty( ).append( tableBody );
+	}
+
+	componentWillUnmount( ){
+		$( ".bh-mj-detail.style" ).remove( );
 	}
 }
 
