@@ -60,7 +60,7 @@
               			"wichevr": "wichevr"
               		}
               	@end-include
-              */Object.defineProperty(exports, "__esModule", { value: true });var _getPrototypeOf = require("babel-runtime/core-js/object/get-prototype-of");var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);var _classCallCheck2 = require("babel-runtime/helpers/classCallCheck");var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);var _createClass2 = require("babel-runtime/helpers/createClass");var _createClass3 = _interopRequireDefault(_createClass2);var _possibleConstructorReturn2 = require("babel-runtime/helpers/possibleConstructorReturn");var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);var _inherits2 = require("babel-runtime/helpers/inherits");var _inherits3 = _interopRequireDefault(_inherits2);var _class;
+              */Object.defineProperty(exports, "__esModule", { value: true });var _jsx2 = require("babel-runtime/helpers/jsx");var _jsx3 = _interopRequireDefault(_jsx2);var _getPrototypeOf = require("babel-runtime/core-js/object/get-prototype-of");var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);var _classCallCheck2 = require("babel-runtime/helpers/classCallCheck");var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);var _createClass2 = require("babel-runtime/helpers/createClass");var _createClass3 = _interopRequireDefault(_createClass2);var _possibleConstructorReturn2 = require("babel-runtime/helpers/possibleConstructorReturn");var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);var _inherits2 = require("babel-runtime/helpers/inherits");var _inherits3 = _interopRequireDefault(_inherits2);var _class;
 
 var _react = require("react");var _react2 = _interopRequireDefault(_react);
 
@@ -96,14 +96,9 @@ var defaultMJMLDefinition = {
 var DEFAULT_DETAIL_MAXIMUM_COUNT = 3;var
 
 
-Detail = (0, _mjmlCore.MJMLElement)(_class = function (_Component) {(0, _inherits3.default)(Detail, _Component);function Detail() {(0, _classCallCheck3.default)(this, Detail);return (0, _possibleConstructorReturn3.default)(this, (Detail.__proto__ || (0, _getPrototypeOf2.default)(Detail)).apply(this, arguments));}(0, _createClass3.default)(Detail, [{ key: "render", value: function render()
-		{var
+Detail = (0, _mjmlCore.MJMLElement)(_class = function (_PureComponent) {(0, _inherits3.default)(Detail, _PureComponent);function Detail() {(0, _classCallCheck3.default)(this, Detail);return (0, _possibleConstructorReturn3.default)(this, (Detail.__proto__ || (0, _getPrototypeOf2.default)(Detail)).apply(this, arguments));}(0, _createClass3.default)(Detail, [{ key: "resolve", value: function resolve(
+		property) {var
 			mjAttribute = this.props.mjAttribute;var _props =
-
-
-
-
-
 
 
 
@@ -136,50 +131,82 @@ Detail = (0, _mjmlCore.MJMLElement)(_class = function (_Component) {(0, _inherit
 
 			foregroundColor = (0, _wichevr2.default)(foregroundColor, mjAttribute("foreground-color"));
 
-			var titleComponent = _react2.default.createElement("td", {
-					style: {
-						"padding": "0px 0px 0px 0px",
-						"fontSize": "11px",
-						"fontWeight": "500",
-						"letterSpacing": "0.3px",
-						"textTransform": "uppercase",
-						"textAlign": align,
-						"color": foregroundColor } },
+			return {
+				"title": title,
+				"value": value,
+				"align": align,
+				"width": width,
+				"reverse": reverse,
+				"backgroundColor": backgroundColor,
+				"foregroundColor": foregroundColor };
 
+		} }, { key: "componentWillMount", value: function componentWillMount()
 
-				title);
+		{
+			this.setState({ "data": this.resolve(this.props) });
+		} }, { key: "componentWillReceiveProps", value: function componentWillReceiveProps(
 
+		property) {
+			this.setState({ "data": this.resolve(property) });
+		} }, { key: "render", value: function render()
 
-			var valueComponent = _react2.default.createElement("td", {
-					style: {
-						"padding": "0px 0px 0px 0px",
-						"fontSize": "15px",
-						"letterSpacing": "0.3px",
-						"textAlign": align,
-						"color": foregroundColor } },
-
-
-				value);
-
-
-			return _react2.default.createElement(_mjmlColumn2.default, {
-					width: width,
-					"background-color": backgroundColor },
-
-				_react2.default.createElement(_mjmlTable2.default, {
-						align: align,
-						"table-layout": "auto",
-						width: "auto" },
-
-					_react2.default.createElement("tr", null,
-						reverse ? valueComponent : titleComponent),
-
-					_react2.default.createElement("tr", null,
-						reverse ? titleComponent : valueComponent)));
+		{var _state$data =
 
 
 
-		} }]);return Detail;}(_react.Component)) || _class;
+
+			this.state.data,title = _state$data.title,value = _state$data.value,align = _state$data.align,width = _state$data.width,reverse = _state$data.reverse,backgroundColor = _state$data.backgroundColor,foregroundColor = _state$data.foregroundColor;
+
+			var titleComponent = (0, _jsx3.default)("td", { style:
+
+				{
+					"padding": "0px 0px 0px 0px",
+					"fontSize": "11px",
+					"fontWeight": "500",
+					"letterSpacing": "0.3px",
+					"textTransform": "uppercase",
+					"textAlign": align,
+					"color": foregroundColor } }, void 0,
+
+
+			title);
+
+
+
+			var valueComponent = (0, _jsx3.default)("td", { style:
+
+				{
+					"padding": "0px 0px 0px 0px",
+					"fontSize": "15px",
+					"letterSpacing": "0.3px",
+					"textAlign": align,
+					"color": foregroundColor } }, void 0,
+
+
+			value);
+
+
+
+			return (0, _jsx3.default)(_mjmlColumn2.default, { width:
+
+				width, "background-color":
+				backgroundColor }, void 0, (0, _jsx3.default)(_mjmlTable2.default, { align:
+
+
+				align, "table-layout":
+				"auto", width:
+				"auto" }, void 0, (0, _jsx3.default)("tr", {}, void 0,
+
+
+			reverse ? valueComponent : titleComponent), (0, _jsx3.default)("tr", {}, void 0,
+
+
+			reverse ? titleComponent : valueComponent)));
+
+
+
+
+		} }]);return Detail;}(_react.PureComponent)) || _class;
 
 
 Detail.tagName = tagName;

@@ -13,7 +13,7 @@ module.exports = function build( parameter ){
 	parameter = parameter || { };
 
 	return {
-		"entry": "./detail.jsx",
+		"entry": "./detail.module.jsx",
 
 		"resolve": {
 			"descriptionFiles": [
@@ -59,15 +59,11 @@ module.exports = function build( parameter ){
 							"options": { "sourceMap": true }
 						},
 						{
-							"loader": "postcss-loader",
+							"loader": "resolve-url-loader",
 							"options": { "sourceMap": true }
 						},
 						{
 							"loader": "sass-loader",
-							"options": { "sourceMap": true }
-						},
-						{
-							"loader": "resolve-url-loader",
 							"options": { "sourceMap": true }
 						}
 					]
