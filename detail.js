@@ -62,7 +62,11 @@
               	@end-include
               */Object.defineProperty(exports, "__esModule", { value: true });var _jsx2 = require("babel-runtime/helpers/jsx");var _jsx3 = _interopRequireDefault(_jsx2);var _getPrototypeOf = require("babel-runtime/core-js/object/get-prototype-of");var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);var _classCallCheck2 = require("babel-runtime/helpers/classCallCheck");var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);var _createClass2 = require("babel-runtime/helpers/createClass");var _createClass3 = _interopRequireDefault(_createClass2);var _possibleConstructorReturn2 = require("babel-runtime/helpers/possibleConstructorReturn");var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);var _inherits2 = require("babel-runtime/helpers/inherits");var _inherits3 = _interopRequireDefault(_inherits2);var _class;
 
+
+
+var _jquery = require("jquery");var _jquery2 = _interopRequireDefault(_jquery);
 var _react = require("react");var _react2 = _interopRequireDefault(_react);
+var _reactDom = require("react-dom");var _reactDom2 = _interopRequireDefault(_reactDom);
 
 var _mjmlCore = require("mjml-core");
 
@@ -82,6 +86,7 @@ var endingTag = false;
 var defaultMJMLDefinition = {
 	"content": "",
 	"attributes": {
+		"name": "",
 		"title": "",
 		"label": "",
 		"value": "",
@@ -104,7 +109,10 @@ Detail = (0, _mjmlCore.MJMLElement)(_class = function (_PureComponent) {(0, _inh
 
 
 
-			this.props,title = _props.title,label = _props.label,value = _props.value,count = _props.count,align = _props.align,reverse = _props.reverse,backgroundColor = _props.backgroundColor,foregroundColor = _props.foregroundColor;
+
+			this.props,name = _props.name,title = _props.title,label = _props.label,value = _props.value,count = _props.count,align = _props.align,reverse = _props.reverse,backgroundColor = _props.backgroundColor,foregroundColor = _props.foregroundColor;
+
+			name = (0, _wichevr2.default)(name, mjAttribute("name"));
 
 			title = (0, _wichevr2.default)(title, label, mjAttribute("title"), mjAttribute("label"));
 
@@ -132,6 +140,7 @@ Detail = (0, _mjmlCore.MJMLElement)(_class = function (_PureComponent) {(0, _inh
 			foregroundColor = (0, _wichevr2.default)(foregroundColor, mjAttribute("foreground-color"));
 
 			return {
+				"name": name,
 				"title": title,
 				"value": value,
 				"align": align,
@@ -190,9 +199,10 @@ Detail = (0, _mjmlCore.MJMLElement)(_class = function (_PureComponent) {(0, _inh
 			return (0, _jsx3.default)(_mjmlColumn2.default, { width:
 
 				width, "background-color":
-				backgroundColor }, void 0, (0, _jsx3.default)(_mjmlTable2.default, { align:
+				backgroundColor }, void 0, (0, _jsx3.default)(_mjmlTable2.default, { "css-class":
 
 
+				"detail", align:
 				align, "table-layout":
 				"auto", width:
 				"auto" }, void 0, (0, _jsx3.default)("tr", {}, void 0,
@@ -206,6 +216,33 @@ Detail = (0, _mjmlCore.MJMLElement)(_class = function (_PureComponent) {(0, _inh
 
 
 
+		} }, { key: "componentDidMount", value: function componentDidMount()
+
+		{
+			var component = (0, _jquery2.default)(_reactDom2.default.findDOMNode(this)).
+			addClass("bh-mj-detail").
+			addClass(this.state.data.name).
+			append("\n\t\t\t\t<link\n\t\t\t\t\tclass=\"bh-mj-detail style\"\n\t\t\t\t\trel=\"stylesheet\"\n\t\t\t\t\ttype=\"text/css\"\n\t\t\t\t\thref=\"https://unpkg.com/bh-mj-detail/detail.css\"\n\t\t\t\t/>\n\t\t\t").
+
+
+
+
+
+
+
+			css("width", this.state.data.width);
+
+			/*;
+                                        	@note:
+                                        		This is a fix for excess comma during component rendering.
+                                        	@end-note
+                                        */
+			var tableBody = (0, _jquery2.default)(".detail table > tbody", component).detach();
+			(0, _jquery2.default)(".detail table", component).empty().append(tableBody);
+		} }, { key: "componentWillUnmount", value: function componentWillUnmount()
+
+		{
+			(0, _jquery2.default)(".bh-mj-detail.style").remove();
 		} }]);return Detail;}(_react.PureComponent)) || _class;
 
 

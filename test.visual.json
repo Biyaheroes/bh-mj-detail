@@ -1,0 +1,46 @@
+{
+	"stats": {
+		"suites": 3,
+		"tests": 2,
+		"passes": 2,
+		"pending": 0,
+		"failures": 0,
+		"start": "2017-08-04T10:14:38.401Z",
+		"end": "2017-08-04T10:14:39.043Z",
+		"duration": 642
+	},
+	"tests": [
+		{
+			"title": "should be equal",
+			"fullTitle": "bh-mj-detail render based comparison should be equal",
+			"duration": 349,
+			"currentRetry": 0,
+			"err": {}
+		},
+		{
+			"title": "should be equal",
+			"fullTitle": "bh-mj-detail component based comparison should be equal",
+			"duration": 287,
+			"currentRetry": 0,
+			"err": {}
+		}
+	],
+	"pending": [],
+	"failures": [],
+	"passes": [
+		{
+			"title": "should be equal",
+			"fullTitle": "bh-mj-detail render based comparison should be equal",
+			"duration": 349,
+			"currentRetry": 0,
+			"err": {}
+		},
+		{
+			"title": "should be equal",
+			"fullTitle": "bh-mj-detail component based comparison should be equal",
+			"duration": 287,
+			"currentRetry": 0,
+			"err": {}
+		}
+	]
+}

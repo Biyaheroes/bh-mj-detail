@@ -126,6 +126,6 @@ module.exports = function build( parameter ){
 
 		"devtool": "#source-map",
 
-		"stats": { "warnings": false }
+		"stats": { "warnings": true }
 	}
 };

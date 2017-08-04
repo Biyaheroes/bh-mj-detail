@@ -1,38 +1,38 @@
 {
-  "name": "bh-mj-detail",
-  "version": "0.7.0",
-  "description": "Biyaheroes MJML Detail Component.",
-  "main": "detail.deploy.js",
-  "support": "detail.module.jsx",
-  "authors": [
-    "Biyaheroes Developers <developers@biyaheroes.com>",
-    "Robot Biyaheroes <robot@biyaheroes.com>",
-    "Richeve S. Bebedor <richeve.bebedor@gmail.com>"
-  ],
-  "license": "MIT",
-  "keywords": [
-    "biyaheroes",
-    "mjml",
-    "detail",
-    "component",
-    "bh-mj-detail"
-  ],
-  "homepage": "https://github.com/Biyaheroes/bh-mj-detail",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
-  "resolutions": {
-    "truly": "^0.20.0"
-  },
-  "dependencies": {
-    "booleanize": "^0.1.0",
-    "falzy": "^0.23.0",
-    "jquery": "^3.2.1",
-    "react": "^15.6.1",
-    "wichevr": "^0.14.0"
-  }
+	"name": "bh-mj-detail",
+	"version": "0.7.0",
+	"description": "Biyaheroes MJML Detail Component.",
+	"main": "detail.deploy.js",
+	"support": "detail.module.jsx",
+	"authors": [
+		"Biyaheroes Developers <developers@biyaheroes.com>",
+		"Robot Biyaheroes <robot@biyaheroes.com>",
+		"Richeve S. Bebedor <richeve.bebedor@gmail.com>"
+	],
+	"license": "MIT",
+	"keywords": [
+		"biyaheroes",
+		"mjml",
+		"detail",
+		"component",
+		"bh-mj-detail"
+	],
+	"homepage": "https://github.com/Biyaheroes/bh-mj-detail",
+	"ignore": [
+		"**/.*",
+		"node_modules",
+		"bower_components",
+		"test",
+		"tests"
+	],
+	"resolutions": {
+		"truly": "^0.20.0"
+	},
+	"dependencies": {
+		"booleanize": "^0.1.0",
+		"falzy": "^0.23.0",
+		"jquery": "^3.2.1",
+		"react": "^15.6.1",
+		"wichevr": "^0.14.0"
+	}
 }

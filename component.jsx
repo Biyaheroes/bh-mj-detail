@@ -4,37 +4,34 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import Detail from "./detail.js";
+import Detail from "./detail.module.jsx";
 
 ReactDOM.render(
 	<div>
 		<Detail
+			name="test-1"
 			title="Hello World"
 			value="This is a normal value"
-		>
-		</Detail>
-
+		/>
 		<Detail
+			name="test-2"
 			title="Hello World"
 			value="This is a normal value"
 			reverse="true"
-		>
-		</Detail>
-
+		/>
 		<Detail
+			name="test-3"
 			title="Hello World"
 			value="This is a normal value"
 			align="center"
-		>
-		</Detail>
-
+		/>
 		<Detail
+			name="test-4"
 			title="Hello World"
 			value="This is a normal value"
 			background-color="blue"
 			foreground-color="white"
-		>
-		</Detail>
+		/>
 	</div>,
 	document.getElementById( "root" )
 );

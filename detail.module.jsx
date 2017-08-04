@@ -66,7 +66,9 @@
 import "./detail.scss";
 //: @end-ignore
 
+import $ from "jquery";
 import React, { PureComponent } from "react";
+import ReactDOM from "react-dom";
 
 import { MJMLElement } from "mjml-core";
 
@@ -202,6 +204,7 @@ class Detail extends PureComponent {
 				background-color={ backgroundColor }
 			>
 				<Table
+					css-class="detail"
 					align={ align }
 					table-layout="auto"
 					width="auto"
@@ -218,7 +221,7 @@ class Detail extends PureComponent {
 	}
 
 	componentDidMount( ){
-		$( ReactDOM.findDOMNode( this ) )
+		let component = $( ReactDOM.findDOMNode( this ) )
 			.addClass( "bh-mj-detail" )
 			.addClass( this.state.data.name )
 			.append( `
@@ -228,7 +231,16 @@ class Detail extends PureComponent {
 					type="text/css"
 					href="https://unpkg.com/bh-mj-detail/detail.css"
 				/>
-			` );
+			` )
+			.css( "width", this.state.data.width );
+
+		/*;
+			@note:
+				This is a fix for excess comma during component rendering.
+			@end-note
+		*/
+		let tableBody = $( ".detail table > tbody", component ).detach( );
+		$( ".detail table", component ).empty( ).append( tableBody );
 	}
 
 	componentWillUnmount( ){
