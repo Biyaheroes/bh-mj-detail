@@ -207,12 +207,14 @@ class Detail extends PureComponent {
 					table-layout="auto"
 					width="auto"
 				>
-					<tr>
-						{ reverse? valueComponent : titleComponent }
-					</tr>
-					<tr>
-						{ reverse? titleComponent : valueComponent }
-					</tr>
+					<tbody>
+						<tr>
+							{ reverse? valueComponent : titleComponent }
+						</tr>
+						<tr>
+							{ reverse? titleComponent : valueComponent }
+						</tr>
+					</tbody>
 				</Table>
 			</Column>
 		);
@@ -237,8 +239,8 @@ class Detail extends PureComponent {
 				This is a fix for excess comma during component rendering.
 			@end-note
 		*/
-		let tableBody = $( ".detail table > tbody", component ).detach( );
-		$( ".detail table", component ).empty( ).append( tableBody );
+		// let tableBody = $( ".detail table > tbody", component ).detach( );
+		// $( ".detail table", component ).empty( ).append( tableBody );
 	}
 
 	componentWillUnmount( ){
